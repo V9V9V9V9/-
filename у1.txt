@@ -128,7 +128,7 @@ else
 					end
 					newMessage = newMessage
 
-					args[1] = "卐" .. newMessage .. "卐"
+					args[1] = "卐 " .. newMessage .. " 卐"
 					coroutine.wrap(c)
 					return old(self, unpack(args))
 				end
