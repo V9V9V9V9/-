@@ -38,11 +38,9 @@ else
 
 		local chatService, players = game:GetService("Chat"), game:GetService("Players")
 
-		-- Список для замены символов
 		local custom_chars = {
 			[" "] = "",
 			["i"] = "і",
-			["a"] = "а",
 			["e"] = "е",
                         ["g"] = "ɡ",
 			["c"] = "с",
@@ -50,7 +48,6 @@ else
 			["o"] = "о",
                         ["y"] = "у",
 			["j"] = "ј",
-                        ["r"] = "ɾ",
                         ["x"] = "х",
 			["p"] = "р",
 			["s"] = "ѕ",
@@ -58,12 +55,6 @@ else
 			["E"] = "Е",
 			["S"] = "Ѕ",
 			["Y"] = "Υ"
-		}
-
-		-- Список для замены слов
-		local custom_words = {
-			["ass"] = "aѕѕ",
-			-- Добавляйте сюда другие слова, если нужно
 		}
 
 		local player = players.LocalPlayer
@@ -130,17 +121,11 @@ else
 			if method == "FireServer" and self.Name == "SayMessageRequest" and #args == 2 and not checkcaller() then
 				if bypassing then
 					local newMessage = args[1]
-
-					-- Замена символов
 					for i, v in pairs(custom_chars) do
 						local rep = string.gsub(newMessage, i, v)
 						newMessage = rep
 					end
-
-					-- Замена слов
-					for word, replacement in pairs(custom_words) do
-						newMessage = string.gsub(newMessage, word, replacement)
-					end
+					newMessage = newMessage
 
 					args[1] = newMessage
 					coroutine.wrap(c)
