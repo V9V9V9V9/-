@@ -41,16 +41,16 @@ else
 		local custom_chars = {
 			[" "] = "",
 			["i"] = "і",
+			["a"] = "а",
 			["e"] = "е",
-                        ["g"] = "ɡ",
+            ["g"] = "ɡ",
 			["c"] = "с",
-                        ["h"] = "һ",
+            ["h"] = "һ",
 			["o"] = "о",
-                        ["N"] = "Ν",
-                        ["y"] = "у",
+            ["y"] = "у",
 			["j"] = "ј",
-                        ["x"] = "х",
-                        ["a"] = "а",
+            ["r"] = "ɾ",
+            ["x"] = "х",
 			["p"] = "р",
 			["s"] = "ѕ",
 			["I"] = "Ι",
@@ -70,7 +70,7 @@ else
 		chatBar = chatGui:FindFirstChild("ChatBar", true)
 
 		local randomstr = function()
-			local characters = {"a", "b", "c", "d", "e", "f", "ass", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+			local characters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 			local str = ""
 			local length = math.random(12, 32)
 
@@ -123,11 +123,15 @@ else
 			if method == "FireServer" and self.Name == "SayMessageRequest" and #args == 2 and not checkcaller() then
 				if bypassing then
 					local newMessage = args[1]
+
+					-- Замена слова "ass" на "aѕѕ"
+					newMessage = string.gsub(newMessage, "ass", "aѕѕ")
+
+					-- Применение замены символов
 					for i, v in pairs(custom_chars) do
 						local rep = string.gsub(newMessage, i, v)
 						newMessage = rep
 					end
-					newMessage = newMessage
 
 					args[1] = newMessage
 					coroutine.wrap(c)
