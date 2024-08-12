@@ -38,6 +38,7 @@ else
 
 		local chatService, players = game:GetService("Chat"), game:GetService("Players")
 
+		-- Таблица для замены символов
 		local custom_chars = {
 			[" "] = "",
 			["i"] = "і",
@@ -56,8 +57,12 @@ else
 			["I"] = "Ι",
 			["E"] = "Е",
 			["S"] = "Ѕ",
-			["Y"] = "Υ",
-            ["ass"] = "aѕѕ" -- добавлено сюда
+			["Y"] = "Υ"
+		}
+
+		-- Таблица для замены слов
+		local custom_words = {
+			["ass"] = "aѕѕ"
 		}
 
 		local player = players.LocalPlayer
@@ -125,9 +130,14 @@ else
 				if bypassing then
 					local newMessage = args[1]
 
-					-- Применение замены символов и слов
+					-- Применение замены символов
 					for i, v in pairs(custom_chars) do
 						newMessage = string.gsub(newMessage, i, v)
+					end
+
+					-- Применение замены слов
+					for word, replacement in pairs(custom_words) do
+						newMessage = string.gsub(newMessage, word, replacement)
 					end
 
 					args[1] = newMessage
