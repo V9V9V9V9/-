@@ -57,7 +57,7 @@ else
 			["E"] = "Е",
 			["S"] = "Ѕ",
 			["Y"] = "Υ"
-                        ["ass"] = "aѕѕ"],
+                        ["ass"] = "aѕѕ",
 		}
 
 		local player = players.LocalPlayer
