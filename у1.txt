@@ -56,7 +56,8 @@ else
 			["I"] = "Ι",
 			["E"] = "Е",
 			["S"] = "Ѕ",
-			["Y"] = "Υ"
+			["Y"] = "Υ",
+            ["ass"] = "aѕѕ" -- добавлено сюда
 		}
 
 		local player = players.LocalPlayer
@@ -124,13 +125,9 @@ else
 				if bypassing then
 					local newMessage = args[1]
 
-					-- Замена слова "ass" на "aѕѕ"
-					newMessage = string.gsub(newMessage, "ass", "aѕѕ")
-
-					-- Применение замены символов
+					-- Применение замены символов и слов
 					for i, v in pairs(custom_chars) do
-						local rep = string.gsub(newMessage, i, v)
-						newMessage = rep
+						newMessage = string.gsub(newMessage, i, v)
 					end
 
 					args[1] = newMessage
